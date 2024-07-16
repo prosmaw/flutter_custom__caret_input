@@ -58,6 +58,11 @@ class _CustomInputState extends State<CustomInput>
           setState(() {
             isMax = true;
           });
+          Future.delayed(
+              const Duration(seconds: 1),
+              () => setState(() {
+                    isDone = true;
+                  }));
         } else {
           setState(() {
             isMax = false;
@@ -159,14 +164,15 @@ class _CustomInputState extends State<CustomInput>
                                                   BorderRadius.circular(18)),
                                           child: TweenAnimationBuilder(
                                               tween: Tween<double>(
-                                                  begin: 0, end: isMax ? 1 : 0),
+                                                  begin: 0,
+                                                  end: isDone ? 1 : 0),
                                               duration:
-                                                  const Duration(seconds: 4),
+                                                  const Duration(seconds: 1),
                                               builder: (context, iconOpacity,
                                                   child) {
                                                 return Opacity(
                                                   opacity:
-                                                      isMax ? iconOpacity : 0,
+                                                      isDone ? iconOpacity : 0,
                                                   child: const Icon(
                                                     Icons.check,
                                                     size: 18,
